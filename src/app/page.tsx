@@ -1,7 +1,11 @@
 import { 
+  Faqs,
+  Footer,
   Header, 
   Hero,
-  Services
+  InstagramShowcase,
+  Services,
+  Testimonials
 } from '@/components';
 
 export default function Home() {
@@ -10,6 +14,10 @@ export default function Home() {
       <Header />
       <Hero />
       <Services />
+      <InstagramShowcase/>
+      <Testimonials />
+      <Faqs/>
+      <Footer />
     </main>
   );
 }

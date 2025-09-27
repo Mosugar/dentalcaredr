@@ -80,8 +80,12 @@ const Header = () => {
               onClick={() => scrollToSection('#hero')}
             >
               <div className="relative">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <Smile className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <img 
+                    src="https://res.cloudinary.com/dylpck2et/image/upload/v1758982023/Coming_soon_dronlq.jpg" 
+                    alt="Dr. Athar Essakhi Logo" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-400 rounded-full animate-pulse"></div>
               </div>

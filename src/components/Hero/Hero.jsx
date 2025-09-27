@@ -75,7 +75,7 @@ const Hero = () => {
             {/* Subtitle */}
             <p className={`${styles.subtitle} text-lg md:text-xl text-secondary-600 max-w-2xl animate-fade-in animation-delay-400`}>
               Dr. Athar Essakhi vous accueille dans son <strong>Smile Lounge</strong> moderne 
-              à Kénitra pour des soins dentaires d excellence. Redécouvrez le plaisir 
+              à Kénitra pour des soins dentaires d'excellence. Redécouvrez le plaisir 
               de sourire avec confiance.
             </p>
 
@@ -112,7 +112,7 @@ const Hero = () => {
               </div>
               <div className="group cursor-pointer">
                 <div className="text-3xl md:text-4xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">7+</div>
-                <div className="text-sm text-secondary-600">Années d expérience</div>
+                <div className="text-sm text-secondary-600">Années d'expérience</div>
               </div>
               <div className="group cursor-pointer">
                 <div className="text-3xl md:text-4xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">4.9★</div>
@@ -128,29 +128,33 @@ const Hero = () => {
               {/* Background decorative card */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-3xl transform rotate-6 shadow-2xl"></div>
               
-              {/* Main card */}
-              <div className="relative bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl p-8 flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
-                <div className="text-center">
-                  {/* Doctor emoji/icon */}
-                  <div className="text-7xl mb-4 animate-bounce-slow">🦷</div>
-                  
-                  {/* Doctor info */}
-                  <h3 className="text-2xl font-bold mb-2 font-display">Dr. Athar Essakhi</h3>
-                  <p className="text-primary-100 mb-4">Dentiste Professionnelle</p>
-                  <p className="text-sm text-primary-200 mb-4">د.أثار - Smile Lounge</p>
-                  
-                  {/* Stars rating */}
-                  <div className="flex justify-center space-x-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-current text-yellow-400" />
-                    ))}
-                  </div>
-                  
-                  {/* Speciality badges */}
-                  <div className="flex flex-wrap justify-center gap-2">
-                    <span className="px-3 py-1 bg-white/20 rounded-full text-xs">Esthétique</span>
-                    <span className="px-3 py-1 bg-white/20 rounded-full text-xs">Orthodontie</span>
-                  </div>
+              {/* Main card with doctor's photo */}
+              <div className="relative bg-white rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                {/* Doctor Photo */}
+                <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-2xl overflow-hidden mb-4 shadow-lg">
+                  <img 
+                    src="https://res.cloudinary.com/dylpck2et/image/upload/v1758982106/KEEP_CALM_your_smile_is_my_mission_dyf9qy.jpg" 
+                    alt="Dr. Athar Essakhi - Dentiste Professionnelle" 
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                
+                {/* Doctor info */}
+                <h3 className="text-xl lg:text-2xl font-bold mb-2 font-display text-secondary-800">Dr. Athar Essakhi</h3>
+                <p className="text-primary-600 mb-2 font-medium">Dentiste Professionnelle</p>
+                <p className="text-sm text-secondary-600 mb-4">د.أثار - Smile Lounge</p>
+                
+                {/* Stars rating */}
+                <div className="flex justify-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-current text-yellow-400" />
+                  ))}
+                </div>
+                
+                {/* Speciality badges */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-medium">Esthétique</span>
+                  <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-medium">Orthodontie</span>
                 </div>
               </div>
             </div>

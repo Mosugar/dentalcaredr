@@ -9,11 +9,19 @@
     opacity: 0;
     transform: translateY(30px);
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 1px; /* Reduced from 140px */
   }
   
   .hero.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  
+  /* Mobile Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .hero {
+      padding-top: 30px; /* Reduced from 100px for mobile */
+    }
   }
   
   /* Badge Styles */
