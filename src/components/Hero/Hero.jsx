@@ -75,7 +75,7 @@ const Hero = () => {
             {/* Subtitle */}
             <p className={`${styles.subtitle} text-lg md:text-xl text-secondary-600 max-w-2xl animate-fade-in animation-delay-400`}>
               Dr. Athar Essakhi vous accueille dans son <strong>Smile Lounge</strong> moderne 
-              à Kénitra pour des soins dentaires d'excellence. Redécouvrez le plaisir 
+              à Kénitra pour des soins dentaires d excellence. Redécouvrez le plaisir 
               de sourire avec confiance.
             </p>
 
@@ -112,7 +112,7 @@ const Hero = () => {
               </div>
               <div className="group cursor-pointer">
                 <div className="text-3xl md:text-4xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">7+</div>
-                <div className="text-sm text-secondary-600">Années d'expérience</div>
+                <div className="text-sm text-secondary-600">Années d expérience</div>
               </div>
               <div className="group cursor-pointer">
                 <div className="text-3xl md:text-4xl font-bold text-primary-600 group-hover:scale-110 transition-transform duration-300">4.9★</div>
