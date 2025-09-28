@@ -28,10 +28,11 @@ const InstagramShowcase = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Fix: Better escape key and body scroll management
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        setSelectedVideo(null);
+      if (e.key === 'Escape' && selectedVideo) {
+        closeVideoModal();
       }
     };
 
@@ -48,11 +49,14 @@ const InstagramShowcase = () => {
     };
   }, [selectedVideo]);
 
+  // Fix: Simplified modal functions
   const openVideoModal = (videoUrl) => {
+    console.log('Opening video modal with URL:', videoUrl); // Debug log
     setSelectedVideo(videoUrl);
   };
 
   const closeVideoModal = () => {
+    console.log('Closing video modal'); // Debug log
     setSelectedVideo(null);
   };
 
@@ -143,24 +147,30 @@ const InstagramShowcase = () => {
                 <div className="relative aspect-square overflow-hidden">
                   {post.type === 'video' ? (
                     <div 
-                      className="relative w-full h-full cursor-pointer"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openVideoModal(post.video);
-                      }}
+                      className="relative w-full h-full cursor-pointer group/video"
+                      onClick={() => openVideoModal(post.video)}
                     >
+                      {/* Video Preview */}
                       <video 
                         src={post.video} 
                         className="w-full h-full object-cover"
                         muted
+                        playsInline
                         preload="metadata"
+                        poster=""
                       />
-                      {/* Play Button */}
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-                        <div className="w-16 h-16 glass-effect bg-white/90 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-xl">
-                          <Play className="w-8 h-8 text-secondary-800 ml-1" />
+                      
+                      {/* Video Overlay */}
+                      <div className="absolute inset-0 bg-black/20 group-hover/video:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <div className="w-16 h-16 glass-effect bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center group-hover/video:scale-110 transition-all duration-300 shadow-xl border border-white/20">
+                          <Play className="w-8 h-8 text-gray-800 ml-1" />
                         </div>
+                      </div>
+
+                      {/* Video Badge */}
+                      <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-medium">
+                        <Play className="w-3 h-3 inline mr-1" />
+                        Vidéo
                       </div>
                     </div>
                   ) : (
@@ -268,9 +278,10 @@ const InstagramShowcase = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
+      {/* Enhanced Video Modal */}
       {selectedVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in">
+          {/* Close Button */}
           <button
             onClick={closeVideoModal}
             className="absolute top-6 right-6 z-60 w-12 h-12 glass-effect bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-200 group"
@@ -278,25 +289,70 @@ const InstagramShowcase = () => {
             <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
           </button>
 
+          {/* Background Click to Close */}
           <div 
             className="absolute inset-0 z-40"
             onClick={closeVideoModal}
           ></div>
 
-          <div className="relative z-50 w-full max-w-sm mx-auto">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
+          {/* Video Container */}
+          <div className="relative z-50 w-full max-w-sm mx-auto animate-scale-in">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10" style={{ aspectRatio: '9/16' }}>
               <video 
                 src={selectedVideo}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover bg-black"
                 controls
                 autoPlay
+                playsInline
                 preload="metadata"
                 style={{ maxHeight: '80vh' }}
+                onError={(e) => {
+                  console.error('Video error:', e);
+                  alert('Erreur lors du chargement de la vidéo');
+                  closeVideoModal();
+                }}
               />
+            </div>
+            
+            {/* Video Info */}
+            <div className="mt-4 text-center">
+              <p className="text-white/80 text-sm">
+                Appuyez sur Échap pour fermer
+              </p>
             </div>
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        
+        @keyframes scale-in {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        
+        .animate-scale-in {
+          animation: scale-in 0.3s ease-out;
+        }
+      `}</style>
     </section>
   );
 };
