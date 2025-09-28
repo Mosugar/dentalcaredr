@@ -127,7 +127,7 @@ const MapLocation = () => {
                     className="inline-flex items-center text-primary-600 hover:text-primary-700 text-sm font-medium mt-2 group-hover:translate-x-1 transition-transform duration-200"
                   >
                     <Navigation className="w-4 h-4 mr-1" />
-                    Obtenir l'itinéraire
+                    Obtenir l&apos;itinéraire
                   </a>
                 </div>
               </div>
